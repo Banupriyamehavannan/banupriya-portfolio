@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+      body {
+        margin: 0;
+        font-family: "Segoe UI", sans-serif;
+        background-color: #f5f5f5;
+        color: #333;
+        scroll-behavior: smooth;
+      }
+      /* Home Section */
+      .home {
+        height: 100vh;
+        background: linear-gradient(to right, #004e92, #000428);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+        padding: 20px;
+      }
+      .home img {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        border: 4px solid white;
+        margin-bottom: 20px;
+      }
+      .home h1 {
+        font-size: 2.5rem;
+        margin: 10px 0;
+      }
+      .home p {
+        font-size: 1.2rem;
+        max-width: 500px;
+      }
+
+      /* About Section */
+      .about {
+        padding: 60px 10%;
+        background-color: white;
+      }
+      .about h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+        color: #004e92;
+      }
+      .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        align-items: start;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .about-details ul {
+        list-style-type: disc;
+        padding-left: 20px;
+        font-size: 1.1rem;
+        line-height: 1.8;
+      }
+      .about-summary {
+        padding: 20px;
+        background-color: #f0f8ff;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        animation: fadeIn 1s ease-in-out;
+      }
+      .about-summary h3 {
+        font-size: 1.5rem;
+        color: #004e92;
+        margin-top: 0;
+      }
+      .about-summary p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #555;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Media Queries for Responsiveness */
+      @media (max-width: 768px) {
+        .about-content {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Contact Me Section */
+      .contact-me {
+        padding: 60px 10%;
+        background-color: #f8f9fa;
+        text-align: center;
+      }
+      .contact-me h2 {
+        font-size: 2.5rem;
+        color: #004e92;
+        margin-bottom: 40px;
+      }
+      .contact-grid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        font-size: 1.2rem;
+        color: #555;
+        width: 100%;
+        text-align: left;
+      }
+      .contact-item a {
+        text-decoration: none;
+        color: #004e92;
+        font-weight: bold;
+      }
+      .contact-item i {
+        font-size: 1.5rem;
+        color: #004e92;
+        width: 30px;
+      }
+
+      /* Skills Section */
+      .skills {
+        background: #f5f9ff;
+        padding: 60px 10%;
+      }
+      .skills h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        color: #0d47a1;
+        margin-bottom: 40px;
+      }
+      .skill {
+        margin-bottom: 25px;
+      }
+      .skill span {
+        font-weight: bold;
+        color: #333;
+        display: block;
+        margin-bottom: 5px;
+      }
+      .skill-bar {
+        background: #ddd;
+        border-radius: 20px;
+        height: 20px;
+        overflow: hidden;
+      }
+      .skill-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #0d47a1, #42a5f5);
+        text-align: right;
+        padding-right: 10px;
+        color: white;
+        font-size: 12px;
+        width: 0;
+        transition: width 1.5s ease-in-out;
+      }
+
+      /* Projects Section */
+      .projects-section {
+        padding: 60px 10%;
+        background: #ffffff;
+      }
+      .projects-section h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 40px;
+        color: #004e92;
+      }
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 30px;
+      }
+      .project-card {
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+      .project-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+      .project-content {
+        padding: 20px;
+      }
+      .project-content h3 {
+        font-size: 1.5rem;
+        color: #222;
+        margin-bottom: 10px;
+      }
+      .project-content p {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 15px;
+      }
+      .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background: #0077ff;
+        color: white;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: 0.3s;
+      }
+      .btn:hover {
+        background: #005fcc;
+      }
+      .project-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Certifications Section */
+      .certifications-section {
+        padding: 60px 10%;
+        background: #f8f9fa;
+        text-align: center;
+      }
+      .certifications-section h2 {
+        font-size: 2.5rem;
+        color: #004e92;
+        margin-bottom: 40px;
+      }
+      .cert-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+      }
+      .cert-card {
+        background: white;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .cert-card img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+      .cert-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      }
+      .cert-card h3 {
+        margin-top: 10px;
+        font-size: 18px;
+        font-weight: bold;
+      }
+      .cert-card p {
+        font-size: 14px;
+        color: #666;
+      }
+
+      /* Education Section */
+      .education-section {
+        padding: 60px 20px;
+        background: #f8f9fa;
+        text-align: center;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+        color: #222;
+      }
+
+      .edu-card {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 20px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        max-width: 800px;
+        margin: 20px auto;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .edu-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .edu-img {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+      }
+
+      .edu-info {
+        text-align: left;
+      }
+
+      .edu-info h3 {
+        font-size: 1.3rem;
+        margin-bottom: 5px;
+        color: #333;
+      }
+
+      .edu-info p {
+        color: #555;
+        font-size: 1rem;
+      }
+
+      /* New CSS for Percentage in Education Section */
+      .edu-info .percentage {
+        font-weight: bold;
+        color: #004e92;
+      }
+
+      /* Achievements Section */
+      .achievements-section {
+        padding: 60px 20px;
+        background: #f5f7fa;
+        text-align: center;
+      }
+
+      .achievements-section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+        color: #2c3e50;
+        font-weight: 700;
+      }
+
+      /* Timeline */
+      .timeline {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .timeline::after {
+        content: "";
+        position: absolute;
+        width: 4px;
+        background-color: #3498db;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .timeline-item {
+        padding: 20px 40px;
+        position: relative;
+        width: 50%;
+      }
+
+      .timeline-item:nth-child(odd) {
+        left: 0;
+      }
+
+      .timeline-item:nth-child(even) {
+        left: 50%;
+      }
+
+      .timeline-content {
+        padding: 20px;
+        background: white;
+        position: relative;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        animation: fadeInUp 0.8s ease;
+      }
+
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: white;
+        border: 4px solid #3498db;
+        border-radius: 50%;
+        top: 20px;
+        z-index: 1;
+      }
+
+      .timeline-item:nth-child(odd)::before {
+        right: -10px;
+      }
+
+      .timeline-item:nth-child(even)::before {
+        left: -10px;
+      }
+
+      /* Animation */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Footer Styles */
+      .footer {
+        background-color: #222;
+        color: #fff;
+        padding: 30px 20px;
+        text-align: center;
+        font-size: 0.9rem;
+      }
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+      }
+      .footer-nav a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 10px;
+        transition: color 0.3s;
+      }
+      .footer-nav a:hover {
+        color: #0077ff;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="home" id="home">
+      <img src="my-photo.jpg" alt="My Photo" />
+      <h1>Welcome to My Portfolio</h1>
+      <p>
+        "Turning creative ideas into functional designs that inspire and
+        engage."
+      </p>
+    </section>
+
+    <section class="about" id="about">
+      <h2>About Me</h2>
+      <div class="about-content">
+        <div class="about-details">
+          <ul>
+            <li>3rd BCA student with a passion for frontend development.</li>
+            <li>
+              Great experience in HTML, CSS, JavaScript, and modern frameworks.
+            </li>
+            <li>Always exploring innovative approaches in UI/UX design.</li>
+            <li>Enjoys solving problems through creative coding.</li>
+            <li>Believes in continuous learning and skill enhancement.</li>
+            <li>
+              Skilled in responsive design for mobile and desktop experiences.
+            </li>
+            <li>
+              Strong team collaboration with excellent communication skills.
+            </li>
+            <li>Focused on writing clean, efficient, and scalable code.</li>
+            <li>
+              Dedicated to delivering user-friendly, interactive websites.
+            </li>
+            <li>Driven by curiosity and love for developing new features.</li>
+          </ul>
+        </div>
+        <div class="about-summary" data-aos="fade-up" data-aos-delay="200">
+          <h3>Professional Objective</h3>
+          <p>
+            I am a highly motivated BCA student with a strong interest in
+            frontend development and a solid foundation in web technologies. I
+            am eager to contribute my skills in HTML, CSS, and JavaScript to
+            create dynamic and user-friendly web applications. I am committed to
+            continuous learning and am looking for opportunities to grow as a
+            developer in a challenging and innovative environment.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="skills" id="skills">
+      <h2>Take A Tour to My Skills</h2>
+      <div class="skill">
+        <span>HTML</span>
+        <div class="skill-bar">
+          <div class="skill-fill" data-percent="90%">90%</div>
+        </div>
+      </div>
+      <div class="skill">
+        <span>CSS</span>
+        <div class="skill-bar">
+          <div class="skill-fill" data-percent="90%">90%</div>
+        </div>
+      </div>
+      <div class="skill">
+        <span>JavaScript</span>
+        <div class="skill-bar">
+          <div class="skill-fill" data-percent="90%">90%</div>
+        </div>
+      </div>
+      <div class="skill">
+        <span>Bootstrap</span>
+        <div class="skill-bar">
+          <div class="skill-fill" data-percent="80%">80%</div>
+        </div>
+      </div>
+      <div class="skill">
+        <span>React</span>
+        <div class="skill-bar">
+          <div class="skill-fill" data-percent="98%">98%</div>
+        </div>
+      </div>
+      <div class="skill">
+        <span>Python</span>
+        <div class="skill-bar">
+          <div class="skill-fill" data-percent="85%">85%</div>
+        </div>
+      </div>
+      <div class="skill">
+        <span>MySQL</span>
+        <div class="skill-bar">
+          <div class="skill-fill" data-percent="99%">99%</div>
+        </div>
+      </div>
+      <div class="skill">
+        <span>Flask</span>
+        <div class="skill-bar">
+          <div class="skill-fill" data-percent="99%">99%</div>
+        </div>
+      </div>
+      <div class="skill">
+        <span>Firestore Database</span>
+        <div class="skill-bar">
+          <div class="skill-fill" data-percent="99%">99%</div>
+        </div>
+      </div>
+      <div class="skill">
+        <span>Django</span>
+        <div class="skill-bar">
+          <div class="skill-fill" data-percent="75%">75%</div>
+        </div>
+      </div>
+      <div class="skill">
+        <span>Microsoft Office</span>
+        <div class="skill-bar">
+          <div class="skill-fill" data-percent="95%">95%</div>
+        </div>
+      </div>
+      <div class="skill">
+        <span>Frontend</span>
+        <div class="skill-bar">
+          <div class="skill-fill" data-percent="99%">99%</div>
+        </div>
+      </div>
+      <div class="skill">
+        <span>C</span>
+        <div class="skill-bar">
+          <div class="skill-fill" data-percent="98%">98%</div>
+        </div>
+      </div>
+      <div class="skill">
+        <span>C++</span>
+        <div class="skill-bar">
+          <div class="skill-fill" data-percent="98%">98%</div>
+        </div>
+      </div>
+      <div class="skill">
+        <span>Java</span>
+        <div class="skill-bar">
+          <div class="skill-fill" data-percent="83%">83%</div>
+        </div>
+      </div>
+      <div class="skill">
+        <span>RDBMS</span>
+        <div class="skill-bar">
+          <div class="skill-fill" data-percent="98%">98%</div>
+        </div>
+      </div>
+      <div class="skill">
+        <span>Communication Skills</span>
+        <div class="skill-bar">
+          <div class="skill-fill" data-percent="95%">95%</div>
+        </div>
+      </div>
+      <div class="skill">
+        <span>Paper Presentation</span>
+        <div class="skill-bar">
+          <div class="skill-fill" data-percent="98%">98%</div>
+        </div>
+      </div>
+      <div class="skill">
+        <span>Typing Skills in English</span>
+        <div class="skill-bar">
+          <div class="skill-fill" data-percent="98%">98%</div>
+        </div>
+      </div>
+    </section>
+    <section class="projects-section" id="projects">
+      <h2>Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+          <img src="tumourax.png" alt="Tumourax Project" />
+          <div class="project-content">
+            <h3>Tumourax</h3>
+            <p>
+              AI-powered tumor detection system built with Python and Machine
+              Learning for medical image analysis.
+            </p>
+          </div>
+        </div>
+        <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+          <img src="to-do-list.png" alt="ToDoList Application" />
+          <div class="project-content">
+            <h3>ToDoList Application</h3>
+            <p>
+              Task management app using React & Firestore with authentication
+              and real-time updates.
+            </p>
+          </div>
+        </div>
+        <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+          <img src="docnur.png" alt="DocNur Project" />
+          <div class="project-content">
+            <h3>DocNur</h3>
+            <p>
+              Doctor-patient appointment and records system built with Flask &
+              MySQL for efficient healthcare management.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="education-section" id="education">
+      <h2 class="section-title">Education</h2>
+
+      <div class="edu-card" data-aos="fade-up">
+        <img src="college.jpeg" alt="BCA" class="edu-img" />
+        <div class="edu-info">
+          <h3>Bachelor of Computer Applications (BCA)</h3>
+          <p>
+            G. VENKATASWAMY NAIDU COLLEGE, AYYANERI, KOVILPATTI — 2026 - Present
+          </p>
+          <p class="percentage">CGPA: 8.5/10</p>
+        </div>
+      </div>
+
+      <div class="edu-card" data-aos="fade-up" data-aos-delay="150">
+        <img src="school2.jpeg" alt="Higher Secondary" class="edu-img" />
+        <div class="edu-info">
+          <h3>Higher Secondary Education</h3>
+          <p>KAMARJ MATRICULATION HIGHER SECONDARY SCHOOL — Completed 2023</p>
+          <p class="percentage">Percentage: 70%</p>
+        </div>
+      </div>
+
+      <div class="edu-card" data-aos="fade-up" data-aos-delay="300">
+        <img src="school1.jpeg" alt="SSLC" class="edu-img" />
+        <div class="edu-info">
+          <h3>SSLC</h3>
+          <p>KAMARJ MATRICULATION HIGHER SECONDARY SCHOOL — Completed 2020</p>
+          <p class="percentage">Percentage: All Pass</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="achievements-section" id="achievements">
+      <h2>Achievements</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3>Best Library User Award</h3>
+            <p>
+              Recognized for outstanding engagement with library resources and
+              services.
+            </p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3>Paper Presentation Competitions</h3>
+            <p>
+              Participated in multiple paper presentations on cutting-edge
+              technologies.
+            </p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3>First Prize - IoT Paper Presentation</h3>
+            <p>
+              Won first place for presenting an innovative Internet of Things
+              concept.
+            </p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3>Full Stack Developer Internship</h3>
+            <p>
+              Completed internship creating real-world projects with modern web
+              technologies.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="certifications-section" id="certifications">
+      <h2>Certifications</h2>
+      <div class="cert-grid">
+        <div class="cert-card" data-aos="zoom-in" data-aos-delay="100">
+          <img src="certificate2.png" alt="Python for Data Science" />
+          <h3>MasterClass on C++</h3>
+          <p>Issued: Jan 2024</p>
+        </div>
+        <div class="cert-card" data-aos="zoom-in" data-aos-delay="200">
+          <img src="certificate1.jpg" alt="Full Stack Development" />
+          <h3>Full Stack Development Intern</h3>
+        </div>
+        <div class="cert-card" data-aos="zoom-in" data-aos-delay="300">
+          <img src="certificate3.png" alt="Cloud Computing" />
+          <h3>7 Days National Level FDP</h3>
+        </div>
+        <div class="cert-card" data-aos="zoom-in" data-aos-delay="300">
+          <img src="certificate4.png" alt="Cloud Computing" />
+          <h3>Introduction to HTML</h3>
+        </div>
+        <div class="cert-card" data-aos="zoom-in" data-aos-delay="300">
+          <img src="certificate5.png" alt="Cloud Computing" />
+          <h3>Python Developer</h3>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-me" id="contact">
+      <h2>Contact Me</h2>
+      <div class="contact-grid">
+        <div class="contact-item" data-aos="fade-up">
+          <i class="fas fa-phone"></i>
+          <p>Phone: <a href="tel:+918124220527">+91 8124220527</a></p>
+        </div>
+        <div class="contact-item" data-aos="fade-up" data-aos-delay="100">
+          <i class="fas fa-envelope"></i>
+          <p>
+            Email:
+            <a href="mailto:banupriyamehavannan52@gmail.com"
+              >banupriyamehavannan52@gmail.com</a
+            >
+          </p>
+        </div>
+        <div class="contact-item" data-aos="fade-up" data-aos-delay="200">
+          <i class="fas fa-map-marker-alt"></i>
+          <p>Address: Kovilpatti, Tamil Nadu, India</p>
+        </div>
+        <div class="contact-item" data-aos="fade-up" data-aos-delay="300">
+          <i class="fab fa-linkedin"></i>
+          <p>
+            <a href="https://linkedin.com/in/yourprofile" target="_blank"
+              >LinkedIn Profile</a
+            >
+          </p>
+        </div>
+        <div class="contact-item" data-aos="fade-up" data-aos-delay="400">
+          <i class="fab fa-instagram"></i>
+          <p>
+            <a href="https://instagram.com/yourprofile" target="_blank"
+              >Instagram Profile</a
+            >
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <p>&copy; 2025 Banupriya M. All Rights Reserved.</p>
+        <nav class="footer-nav">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#education">Education</a>
+          <a href="#achievements">Achievements</a>
+          <a href="#certifications">Certifications</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({ duration: 1000, once: true });
+      const skillFills = document.querySelectorAll(".skill-fill");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const percent = entry.target.getAttribute("data-percent");
+              entry.target.style.width = percent;
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+      skillFills.forEach((fill) => observer.observe(fill));
+    </script>
+  </body>
+</html>
